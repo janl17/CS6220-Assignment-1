@@ -1,0 +1,26 @@
+def all_itemsets():
+    def generate_combinations(idx, current, all_combinations):
+        if len(current) == N:
+            all_combinations.append(current.copy())
+            return
+
+        for i in range(idx, len(items)):
+            current.append(items[i])
+            generate_combinations(i + 1, current, all_combinations)
+            current.pop()
+
+    # Input from user
+    items_input = input("Enter a list of items separated by space: ")
+    N = int(input("Enter the number of items in each combination (N): "))
+
+    # Splitting the input string into a list of items
+    items = items_input.split()
+
+    all_combinations = []
+    generate_combinations(0, [], all_combinations)
+
+    # Print the output
+    print("All possible itemsets:")
+    for combination in all_combinations:
+        print(combination)
+
