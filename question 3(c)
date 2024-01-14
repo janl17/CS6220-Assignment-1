@@ -1,21 +1,20 @@
 import csv
 
 def data_year_range():
-    filename = '/Users/janleung/Downloads/archive (1)/combined_data_1.txt'
+    filename = '/Users/janleung/Downloads/archive (1)/combined_data_4.txt'
     years = set()
 
     with open(filename, 'r') as file:
         reader = csv.reader(file)
-        #next(reader)  # Skip the first row
+        next(reader)  # Skip the first row
         for row in reader:
-            # Check if row is not empty and has enough elements
             if row and len(row) > 2:
-                date = row[2]  # Assuming the date is the third element
-                year = date.split('-')[0]  # Extract year from the date
+                date = row[2]  
+                year = date.split('-')[0]  
                 years.add(year)
 
         min_year = min(years)
         max_year = max(years)
         print("Range of years:", min_year, "to", max_year)
-   
+
 data_year_range()
