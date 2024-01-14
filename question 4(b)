@@ -1,0 +1,20 @@
+import csv
+from collections import defaultdict
+
+def count_movies_referred_by_same_name():
+    filename = '/Users/janleung/Downloads/archive (1)/movie_titles.csv'
+    movie_name_counts = defaultdict(int)  # Dictionary to store counts of movie names
+
+    with open(filename, 'r', encoding='ISO-8859-1') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            if row and len(row) > 2:
+                movie_name = row[2].strip()
+                movie_name_counts[movie_name] += 1
+
+    # Find movie names that refer to exactly four different movies
+    movies_with_four_references = [name for name, count in movie_name_counts.items() if count == 4]
+
+    print("Number of movie names that refer to four different movies:", len(movies_with_four_references))
+
+count_movies_referred_by_same_name()
