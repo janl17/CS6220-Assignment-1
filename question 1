@@ -1,0 +1,15 @@
+import csv
+
+def cardinality_items():
+    filename = '/Users/janleung/Downloads/basket_data.csv'
+    unique_items = set()
+
+    with open(filename, 'r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            items = row[0].split(', ')
+            unique_items.update(items)
+
+    print("Total unique items:", len(unique_items))
+    return 0
+
