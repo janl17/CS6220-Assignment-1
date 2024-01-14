@@ -10,6 +10,3 @@ def count_rows():
             row_count += 1
 
     print("Total number of rows:", row_count)
-
-# Example usage
-count_rows()
