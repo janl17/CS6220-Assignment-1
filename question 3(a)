@@ -1,0 +1,15 @@
+import csv
+
+def count_rows():
+    filename = '/Users/janleung/Downloads/archive (1)/combined_data_3.txt'
+    row_count = 0
+
+    with open(filename, 'r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            row_count += 1
+
+    print("Total number of rows:", row_count)
+
+# Example usage
+count_rows()
