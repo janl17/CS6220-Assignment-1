@@ -1,0 +1,20 @@
+import csv
+
+
+def count_unique_movie_names():
+    filename = '/Users/janleung/Downloads/archive (1)/movie_titles.csv'
+    unique_movie_names = set()
+
+    with open(filename, 'r', encoding='ISO-8859-1') as file:
+        reader = csv.reader(file, delimiter=',')
+        for row in reader:
+            if row and len(row) > 2:
+                movie_name = row[2].strip()
+                unique_movie_names.add(movie_name)
+
+    print("Total number of movies with unique names:",
+          len(unique_movie_names))
+
+
+# Example usage
+count_unique_movie_names()
