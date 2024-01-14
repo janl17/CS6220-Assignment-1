@@ -1,0 +1,26 @@
+import csv
+from collections import defaultdict
+
+def count_users_rated_exactly_200_movies(filenames):
+    user_ratings_count = defaultdict(int)  # Dictionary to store counts of ratings per user
+
+    # Iterate over all provided filenames
+    for filename in filenames:
+        with open(filename, 'r', encoding='ISO-8859-1') as file:
+            for line in file:
+                user_id = line.split(',')[0].strip()  # Extract user ID
+                user_ratings_count[user_id] += 1  # Increment count for this user
+
+    # Find users who rated exactly 200 movies
+    users_with_200_ratings = [user for user, count in user_ratings_count.items() if count == 200]
+
+    print("Number of users who rated exactly 200 movies:", len(users_with_200_ratings))
+
+
+filenames = [
+    '/Users/janleung/Downloads/archive (1)/combined_data_1.txt',
+    '/Users/janleung/Downloads/archive (1)/combined_data_2.txt',
+    '/Users/janleung/Downloads/archive (1)/combined_data_3.txt',
+    '/Users/janleung/Downloads/archive (1)/combined_data_4.txt'
+]
+count_users_rated_exactly_200_movies(filenames)
