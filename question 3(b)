@@ -1,0 +1,16 @@
+import csv
+
+def count_unique_userIDs():
+    filename = '/Users/janleung/Downloads/archive (1)/combined_data_3.txt'
+    unique_userIDs = set()
+
+    with open(filename, 'r') as file:
+        reader = csv.reader(file)
+        next(reader)  # Skip the first row
+        for row in reader:
+            userID = row[0].split(',')[0]
+            unique_userIDs.add(userID)
+
+    print("Total number of unique userIDs:", len(unique_userIDs))
+
+count_unique_userIDs()
