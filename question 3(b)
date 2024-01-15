@@ -1,16 +1,22 @@
-import csv
-
-def count_unique_userIDs():
-    filename = '/Users/janleung/Downloads/archive (1)/combined_data_3.txt'
+def count_unique_userIDs_across_files(filenames):
     unique_userIDs = set()
 
-    with open(filename, 'r') as file:
-        reader = csv.reader(file)
-        next(reader)  # Skip the first row
-        for row in reader:
-            userID = row[0].split(',')[0]
-            unique_userIDs.add(userID)
+    for filename in filenames:
+        with open(filename, 'r') as file:
+            for line in file:
+                if ',' in line:
+                    userID = line.split(',')[0]
+                    unique_userIDs.add(userID)
 
-    print("Total number of unique userIDs:", len(unique_userIDs))
+    print("Total number of unique userIDs across files:", len(unique_userIDs))
 
-count_unique_userIDs()
+# File paths
+file_paths = [
+    '/Users/janleung/Downloads/archive (1)/combined_data_1.txt',
+    '/Users/janleung/Downloads/archive (1)/combined_data_2.txt',
+    '/Users/janleung/Downloads/archive (1)/combined_data_3.txt',
+    '/Users/janleung/Downloads/archive (1)/combined_data_4.txt'
+]
+
+
+count_unique_userIDs_across_files(file_paths)
