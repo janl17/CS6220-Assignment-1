@@ -1,20 +1,27 @@
-import csv
-
-def data_year_range():
-    filename = '/Users/janleung/Downloads/archive (1)/combined_data_4.txt'
+def data_year_range_across_files(filenames):
     years = set()
 
-    with open(filename, 'r') as file:
-        reader = csv.reader(file)
-        next(reader)  # Skip the first row
-        for row in reader:
-            if row and len(row) > 2:
-                date = row[2]  
-                year = date.split('-')[0]  
-                years.add(year)
+    for filename in filenames:
+        with open(filename, 'r') as file:
+            for line in file:
+                if ',' in line:
+                    date = line.split(',')[-1].strip()
+                    year = date.split('-')[0]
+                    years.add(year)
 
+    if years:
         min_year = min(years)
         max_year = max(years)
-        print("Range of years:", min_year, "to", max_year)
+        print("Range of years across files:", min_year, "to", max_year)
+    else:
+        print("No valid data found.")
 
-data_year_range()
+# File paths
+file_paths = [
+    '/Users/janleung/Downloads/archive (1)/combined_data_1.txt',
+    '/Users/janleung/Downloads/archive (1)/combined_data_2.txt',
+    '/Users/janleung/Downloads/archive (1)/combined_data_3.txt',
+    '/Users/janleung/Downloads/archive (1)/combined_data_4.txt'
+]
+
+data_year_range_across_files(file_paths)
