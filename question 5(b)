@@ -1,0 +1,22 @@
+def count_rating_rows_across_files(filenames):
+    total_rating_row_count = 0
+
+    for filename in filenames:
+        with open(filename, 'r') as file:
+            for row in file:
+                # Check if the row contains a comma, indicating a CustomerID,Rating,Date format
+                if ',' in row:
+                    total_rating_row_count += 1
+
+    print("Total number of rows with format CustomerID,Rating,Date across files:", total_rating_row_count)
+
+# File paths
+file_paths = [
+    '/Users/janleung/Downloads/archive (1)/combined_data_1.txt',
+    '/Users/janleung/Downloads/archive (1)/combined_data_2.txt',
+    '/Users/janleung/Downloads/archive (1)/combined_data_3.txt',
+    '/Users/janleung/Downloads/archive (1)/combined_data_4.txt'
+]
+
+# Call the function
+count_rating_rows_across_files(file_paths)
